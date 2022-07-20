@@ -3,49 +3,68 @@ package com.example.workouttimer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
 import android.content.Context
 import java.io.File
 import android.util.Log
 
 @Serializable
-data class Workout(val pos: Int, val title: String)
+data class Workout(val title: String)
 
-class Workouts(
-    val context: Context,
-) {
+// Data structure to reach workouts from the savefile for workouts on the phone
+class Workouts(val context: Context) {
     var workoutsFile: File
-    val workouts = mutableListOf<Workout>()
+    var workouts = mutableListOf<Workout>()
 
     init {
         val path = context.getFilesDir().resolve("workouts.json")
         workoutsFile = File(path.path)
 
         if (!workoutsFile.exists()) {
+            Log.v("Workouts", "Creating new JSON file.")
             workoutsFile.createNewFile()
-            Log.v("Workouts", "Creating new json file.")
+            workoutsFile.writeText("[]") // so we can parse it as a list later
         }
+
+        readSavefile()
     }
 
-    fun fetchWorkouts() {
-        Log.v("Workouts", "Parsing json file.")
-
-        val text = workoutsFile.readText()
-
-        //val workouts = Json.decodeFromString<Workout>(text)
+    fun readSavefile() {
+        Log.v("Workouts", "Reading JSON file.")
+        val text: String = workoutsFile.readText()
+        workouts = Json.decodeFromString<MutableList<Workout>>(text)
     }
 
-    fun writeWorkouts() {
+    fun writeWorkoutsToFile() {
         Log.v("Workouts", "Writing workouts to file.")
-        val json = Json.encodeToString(workouts)
-
-        workoutsFile.appendText(json)
+        workoutsFile.writeText(Json.encodeToString(workouts))
     }
 
-    fun newWorkout() {
+    fun new(title: String) {
         Log.v("Workouts", "Adding new workout.")
-        workouts.add(Workout(workouts.size, "testar"))
+        workouts.add(Workout(title))
+        writeWorkoutsToFile()
+    }
 
-        val json = Json.encodeToString(workouts)
-        Log.v("Workouts", "All: " + json)
+    fun update(pos: Int, workout: Workout) {
+        workouts.removeAt(pos)
+        workouts.add(pos, workout)
+        writeWorkoutsToFile()
+    }
+
+    fun remove(pos: Int) {
+        Log.v("Workouts", "Removing workout.")
+        workouts.removeAt(pos)
+        writeWorkoutsToFile()
+    }
+
+    fun move(from: Int, to: Int) {
+        Log.v("Workouts", "Moving items.")
+
+        val itemFrom = workouts[from]
+        workouts.removeAt(from)
+        workouts.add(to, itemFrom)
+
+        writeWorkoutsToFile()
     }
 }
