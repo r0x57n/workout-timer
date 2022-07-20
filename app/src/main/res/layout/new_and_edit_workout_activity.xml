@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:text="Title" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/titleLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/prepareLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/titleLabel"
+        android:text="Prepare" />
+
+    <EditText
+        android:id="@+id/prepare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleLabel"
+        android:layout_toRightOf="@+id/prepareLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/workLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/prepareLabel"
+        android:text="Work" />
+
+    <EditText
+        android:id="@+id/work"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prepareLabel"
+        android:layout_toRightOf="@+id/workLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/restLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/workLabel"
+        android:text="Rest" />
+
+    <EditText
+        android:id="@+id/rest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workLabel"
+        android:layout_toRightOf="@+id/restLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/cyclesLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/restLabel"
+        android:text="Cycles" />
+
+    <EditText
+        android:id="@+id/cycles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restLabel"
+        android:layout_toRightOf="@+id/cyclesLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/setsLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/cyclesLabel"
+        android:text="Sets" />
+
+    <EditText
+        android:id="@+id/sets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cyclesLabel"
+        android:layout_toRightOf="@+id/setsLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/rest_betweenLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/setsLabel"
+        android:text="Rest_Between" />
+
+    <EditText
+        android:id="@+id/rest_between"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setsLabel"
+        android:layout_toRightOf="@+id/rest_betweenLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <!-- field -->
+    <TextView
+        android:id="@+id/cooldownLabel"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/rest_betweenLabel"
+        android:text="Cooldown" />
+
+    <EditText
+        android:id="@+id/cooldown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rest_betweenLabel"
+        android:layout_toRightOf="@+id/cooldownLabel"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cooldownLabel"
+        android:text="Save" />
+
+</RelativeLayout>
