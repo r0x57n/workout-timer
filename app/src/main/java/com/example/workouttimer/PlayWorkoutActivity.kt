@@ -10,12 +10,15 @@ import android.os.Looper
 
 import android.widget.Button
 import android.widget.TextView
+import android.media.MediaPlayer
 
 class PlayWorkoutActivity : AppCompatActivity() {
 
     enum class Part {
         prepare, work, rest, between, cooldown, finished
     }
+
+    var quit: Boolean = false
 
     lateinit var workouts: Workouts
     lateinit var currentTitleT: TextView
@@ -34,6 +37,9 @@ class PlayWorkoutActivity : AppCompatActivity() {
     var sets: Int = 0
     var fullCounter: Int = 0
     var position: Part = Part.prepare
+
+    val timer: Timer = Timer()
+    val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +62,11 @@ class PlayWorkoutActivity : AppCompatActivity() {
         val pause: Button = findViewById(R.id.pause)
         val stop: Button = findViewById(R.id.stop)
 
-        // Holders
-        // a workout goes like this:
-        // Prepare
-        // ((Work + Rest) * Cycles + Rest_between) * Sets
-        // Cooldown
+        // Media player plays a "tick tick toook" the last three ticks of any part of the workout
+        val mp_c5: MediaPlayer = MediaPlayer.create(this, R.raw.beep_c5)
+        val mp_c6: MediaPlayer = MediaPlayer.create(this, R.raw.beep_c6)
+
+        // Initialize timers and labels
         workoutTitle.text = w.title
         position = Part.prepare
         currentTitle = "Prepare"
@@ -71,9 +77,17 @@ class PlayWorkoutActivity : AppCompatActivity() {
         cyclesMax.text = w.cycles.toString()
         fullCounter = w.prepare + w.cooldown + (w.work + w.rest) * w.cycles * w.sets + w.sets * w.restBetween
 
+        // The timer task is run every second and is the backbone to the workout timer
         val timerTask = object:TimerTask() {
             override fun run() {
                 if (running) {
+                    // play sounds
+                    if (currentTime == 3 || currentTime == 2) {
+                        mp_c5.start()
+                    } else if (currentTime == 1) {
+                        mp_c6.start()
+                    }
+
                     when(position) {
                         Part.prepare -> {
                             if (currentTime == 1) {
@@ -135,18 +149,20 @@ class PlayWorkoutActivity : AppCompatActivity() {
                 }
             }
         }
-
-        val timer: Timer = Timer()
         timer.schedule(timerTask, 1000, 1000)
 
-        val handler = Handler(Looper.getMainLooper())
+        // We need to update the UI from the main thread (timertask is it's own thread)
         handler.post(object:Runnable{
                          override fun run() {
                             updateView()
-                            handler.postDelayed(this, 1)
+
+                            if (!quit) {
+                                handler.postDelayed(this, 1000)
+                            }
                          }
         })
 
+        /* click listeners */
         pause.setOnClickListener {
             if (running) {
                 pause.setText("Resume")
@@ -162,6 +178,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         }
     }
 
+    // Updates things in the view
     fun updateView() {
         currentTitleT.text = currentTitle
         currentTimeT.text = currentTime.toString()
@@ -170,4 +187,13 @@ class PlayWorkoutActivity : AppCompatActivity() {
         fullCounterT.text = fullCounter.toString()
     }
 
+    override fun onBackPressed() {
+        quitView()
+    }
+
+    fun quitView() {
+        timer.cancel()
+        quit = true
+        finish()
+    }
 }
