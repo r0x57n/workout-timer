@@ -16,7 +16,7 @@ class NewWorkoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.new_workout_activity)
+        setContentView(R.layout.new_and_edit_workout_activity)
 
         // Available fields in the view
         val title: EditText = findViewById(R.id.title)

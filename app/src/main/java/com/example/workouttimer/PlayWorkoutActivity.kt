@@ -14,17 +14,17 @@ import android.widget.TextView
 class PlayWorkoutActivity : AppCompatActivity() {
 
     enum class Part {
-        prepare, work, rest, between, cooldown
+        prepare, work, rest, between, cooldown, finished
     }
 
     lateinit var workouts: Workouts
     lateinit var currentTitleT: TextView
     lateinit var currentTimeT: TextView
     lateinit var currentCycle: TextView
+    lateinit var fullCounterT: TextView
     lateinit var cyclesMax: TextView
     lateinit var currentSet: TextView
     lateinit var setsMax: TextView
-    lateinit var totalTimeT: TextView
 
     var running: Boolean = true
     var currentTitle: String = "init"
@@ -32,7 +32,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
     var currentFulltime: Int = 0
     var cycles: Int = 0
     var sets: Int = 0
-    var totalTime: Long = 0
+    var fullCounter: Int = 0
     var position: Part = Part.prepare
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +52,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         cyclesMax = findViewById(R.id.cyclesMax)
         currentSet = findViewById(R.id.currentSet)
         setsMax = findViewById(R.id.setsMax)
-        totalTimeT = findViewById(R.id.fullCounter)
-        val fullFulltime: TextView = findViewById(R.id.fullFulltime)
+        fullCounterT = findViewById(R.id.fullCounter)
         val pause: Button = findViewById(R.id.pause)
         val stop: Button = findViewById(R.id.stop)
 
@@ -62,6 +61,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         // Prepare
         // ((Work + Rest) * Cycles + Rest_between) * Sets
         // Cooldown
+        workoutTitle.text = w.title
         position = Part.prepare
         currentTitle = "Prepare"
         currentTime = w.prepare
@@ -69,11 +69,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         sets = 1
         setsMax.text = w.sets.toString()
         cyclesMax.text = w.cycles.toString()
-        val fulltime: Int = (w.prepare + ((w.work + w.rest) * w.cycles + w.restBetween) * w.sets + w.cooldown) * 1000
-
-        // Set static values
-        workoutTitle.text = w.title
-        fullFulltime.text = (fulltime/1000).toString()
+        fullCounter = w.prepare + w.cooldown + (w.work + w.rest) * w.cycles * w.sets + w.sets * w.restBetween
 
         val timerTask = object:TimerTask() {
             override fun run() {
@@ -82,14 +78,14 @@ class PlayWorkoutActivity : AppCompatActivity() {
                         Part.prepare -> {
                             if (currentTime == 1) {
                                 currentTitle = "Work"
-                                currentTime = w.work
+                                currentTime = w.work + 1
                                 position = Part.work
                             }
                         }
                         Part.work -> {
                             if (currentTime == 1) {
                                 currentTitle = "Rest"
-                                currentTime = w.rest
+                                currentTime = w.rest + 1
                                 position = Part.rest
                             }
                         }
@@ -97,12 +93,12 @@ class PlayWorkoutActivity : AppCompatActivity() {
                             if (currentTime == 1) {
                                 if (cycles < w.cycles) {
                                     currentTitle = "Work"
-                                    currentTime = w.work
+                                    currentTime = w.work + 1
                                     position = Part.work
                                     cycles++
                                 } else {
                                     currentTitle = "Between"
-                                    currentTime = w.restBetween
+                                    currentTime = w.restBetween + 1
                                     position = Part.between
                                     cycles = 1
                                 }
@@ -112,25 +108,29 @@ class PlayWorkoutActivity : AppCompatActivity() {
                             if (currentTime == 1) {
                                 if (sets < w.sets) {
                                     currentTitle = "Work"
-                                    currentTime = w.work
+                                    currentTime = w.work + 1
                                     position = Part.work
                                     sets++
                                 } else {
                                     currentTitle = "Cooldown"
-                                    currentTime = w.cooldown
+                                    currentTime = w.cooldown + 1
                                     position = Part.cooldown
-                                    sets++
                                 }
                             }
                         }
                         Part.cooldown -> {
                             if (currentTime == 1) {
                                 currentTitle = "Finished"
+                                position = Part.finished
+                                running = false
                             }
+                        }
+                        Part.finished -> {
+
                         }
                     }
 
-                    totalTime++
+                    fullCounter--
                     currentTime--
                 }
             }
@@ -167,7 +167,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         currentTimeT.text = currentTime.toString()
         currentCycle.text = cycles.toString()
         currentSet.text = sets.toString()
-        totalTimeT.text = totalTime.toString()
+        fullCounterT.text = fullCounter.toString()
     }
 
 }

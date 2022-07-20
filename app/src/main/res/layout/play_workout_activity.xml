@@ -88,23 +88,6 @@
         android:layout_below="@+id/fullLabel"
         android:text="0" />
 
-    <TextView
-        android:id="@+id/fullTimedivider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fullLabel"
-        android:layout_toRightOf="@+id/fullCounter"
-        android:text="/" />
-
-    <TextView
-        android:id="@+id/fullFulltime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fullLabel"
-        android:layout_toRightOf="@+id/fullTimedivider"
-        android:text="0" />
-
-
     <!-- Buttons -->
     <Button
         android:id="@+id/pause"
