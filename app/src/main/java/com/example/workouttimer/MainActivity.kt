@@ -104,6 +104,14 @@ class MainActivity : AppCompatActivity() {
         resultLauncher.launch(intent)
     }
 
+    fun playWorkout(pos: Int) {
+        Log.v("MainActivity", "Playing workot: " + pos)
+
+        val intent = Intent(this, PlayWorkoutActivity::class.java)
+        intent.putExtra("pos", pos)
+        resultLauncher.launch(intent)
+    }
+
     fun newWorkout() {
         Log.v("MainActivity", "New workout.")
 

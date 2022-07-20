@@ -2,8 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content">
 
     <!-- field -->
     <TextView
@@ -37,7 +36,7 @@
         android:layout_toRightOf="@+id/prepareLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -55,7 +54,7 @@
         android:layout_toRightOf="@+id/workLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -73,7 +72,7 @@
         android:layout_toRightOf="@+id/restLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -91,7 +90,7 @@
         android:layout_toRightOf="@+id/cyclesLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -109,7 +108,7 @@
         android:layout_toRightOf="@+id/setsLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -127,7 +126,7 @@
         android:layout_toRightOf="@+id/rest_betweenLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <!-- field -->
     <TextView
@@ -145,7 +144,7 @@
         android:layout_toRightOf="@+id/cooldownLabel"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="" />
+        android:text="0" />
 
     <Button
         android:id="@+id/save"

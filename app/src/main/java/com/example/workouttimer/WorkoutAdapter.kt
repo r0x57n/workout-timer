@@ -25,32 +25,37 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView
-        val workoutID: TextView
+        val position: TextView
+        val play: TextView
         val delete: TextView
 
         init {
-            // Define the different components of the view
             title = view.findViewById(R.id.title)
-            workoutID = view.findViewById(R.id.workoutID)
+            position = view.findViewById(R.id.position)
+            play = view.findViewById(R.id.play)
             delete = view.findViewById(R.id.delete)
         }
     }
 
     // Sets values to the elements in the XML layout for each entry of the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //viewHolder.workoutID.text = workouts.workouts[position].id.toString()
-        holder.workoutID.text = holder.getAdapterPosition().toString()
+        holder.position.text = position.toString()
         holder.title.text = workouts.workouts[holder.getAdapterPosition()].title
+
+        holder.title.setOnClickListener {
+            parent.editWorkout(holder.getAdapterPosition())
+            notifyItemChanged(holder.getAdapterPosition())
+        }
+
+        holder.play.setOnClickListener {
+            parent.playWorkout(holder.getAdapterPosition())
+        }
 
         holder.delete.setOnClickListener {
             workouts.remove(holder.getAdapterPosition())
             notifyItemRemoved(holder.getAdapterPosition())
         }
 
-        holder.title.setOnClickListener {
-            parent.editWorkout(holder.getAdapterPosition())
-            notifyItemChanged(holder.getAdapterPosition())
-        }
     }
 
     // Create new views (items, invoked by the layout manager)

@@ -38,8 +38,8 @@ class EditWorkoutActivity : AppCompatActivity() {
         // Save workout
         btnSave.setOnClickListener {
             if (!title.text.equals("")) {
-                val workout: Workout = Workout(title.text.toString())
-                workouts.update(pos, workout)
+                //val workout: Workout = Workout(title.text.toString())
+                //workouts.update(pos, workout)
                 setResult(RESULT_OK)
                 finish()
             }

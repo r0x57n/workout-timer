@@ -9,7 +9,16 @@ import java.io.File
 import android.util.Log
 
 @Serializable
-data class Workout(val title: String)
+data class Workout(
+    val title: String,
+    val prepare: Int,
+    val work: Int,
+    val rest: Int,
+    val cycles: Int,
+    val sets: Int,
+    val restBetween: Int,
+    val cooldown: Int,
+)
 
 // Data structure to reach workouts from the savefile for workouts on the phone
 class Workouts(val context: Context) {
@@ -40,9 +49,9 @@ class Workouts(val context: Context) {
         workoutsFile.writeText(Json.encodeToString(workouts))
     }
 
-    fun new(title: String) {
+    fun new(workout: Workout) {
         Log.v("Workouts", "Adding new workout.")
-        workouts.add(Workout(title))
+        workouts.add(workout)
         writeWorkoutsToFile()
     }
 
