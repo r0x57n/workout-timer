@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Titles -->
+    <TextView
+        android:id="@+id/workoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout title" />
+
+    <TextView
+        android:id="@+id/currentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workoutTitle"
+        android:text="Current title" />
+
+    <!-- Show current time -->
+    <TextView
+        android:id="@+id/currentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentTitle"
+        android:text="0" />
+
+    <!-- Cycles/sets -->
+    <TextView
+        android:id="@+id/currentCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentTime"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/cyclesDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/currentCycle"
+        android:layout_below="@+id/currentTime"
+        android:text="/" />
+
+    <TextView
+        android:id="@+id/cyclesMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cyclesDivider"
+        android:layout_below="@+id/currentTime"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/currentSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentCycle"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/setsDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/currentSet"
+        android:layout_below="@+id/currentCycle"
+        android:text="/" />
+
+    <TextView
+        android:id="@+id/setsMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/setsDivider"
+        android:layout_below="@+id/currentCycle"
+        android:text="0" />
+
+    <!-- Full workout info -->
+    <TextView
+        android:id="@+id/fullLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setsMax"
+        android:text="Full workout" />
+
+    <TextView
+        android:id="@+id/fullCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullLabel"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/fullTimedivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullLabel"
+        android:layout_toRightOf="@+id/fullCounter"
+        android:text="/" />
+
+    <TextView
+        android:id="@+id/fullFulltime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullLabel"
+        android:layout_toRightOf="@+id/fullTimedivider"
+        android:text="0" />
+
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullCounter"
+        android:text="Pause" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/pause"
+        android:text="Stop" />
+
+</RelativeLayout>
