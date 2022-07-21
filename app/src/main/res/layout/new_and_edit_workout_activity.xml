@@ -30,15 +30,12 @@
         android:layout_below="@+id/titleLabel"
         android:text="Prepare" />
 
-    <EditText
-        android:id="@+id/prepare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.example.workouttimer.NumberPickerH
+        android:id ="@+id/prepare"
+        android:layout_width ="wrap_content"
+        android:layout_height ="wrap_content"
         android:layout_below="@+id/titleLabel"
-        android:layout_toRightOf="@+id/prepareLabel"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="0" />
+        android:layout_toRightOf="@+id/prepareLabel" />
 
     <!-- field -->
     <TextView
@@ -49,7 +46,7 @@
         android:layout_below="@+id/prepareLabel"
         android:text="Work" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +65,7 @@
         android:layout_below="@+id/workLabel"
         android:text="Rest" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +84,7 @@
         android:layout_below="@+id/restLabel"
         android:text="Cycles" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/cycles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +103,7 @@
         android:layout_below="@+id/cyclesLabel"
         android:text="Sets" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/sets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,7 +122,7 @@
         android:layout_below="@+id/setsLabel"
         android:text="Rest_Between" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/rest_between"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -144,7 +141,7 @@
         android:layout_below="@+id/rest_betweenLabel"
         android:text="Cooldown" />
 
-    <EditText
+    <com.example.workouttimer.NumberPickerH
         android:id="@+id/cooldown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

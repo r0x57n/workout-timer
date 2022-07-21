@@ -1,0 +1,8 @@
+<resources>
+   <declare-styleable name="NumberPickerH">
+    <attr name="incMax" format="integer" value="5" />
+    <attr name="incMin" format="integer" value="1" />
+    <attr name="decMax" format="integer" value="5" />
+    <attr name="decMin" format="integer" value="1" />
+   </declare-styleable>
+</resources>

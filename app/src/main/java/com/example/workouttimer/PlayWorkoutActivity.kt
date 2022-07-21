@@ -174,7 +174,7 @@ class PlayWorkoutActivity : AppCompatActivity() {
         }
 
         stop.setOnClickListener {
-            finish()
+            quitView()
         }
     }
 

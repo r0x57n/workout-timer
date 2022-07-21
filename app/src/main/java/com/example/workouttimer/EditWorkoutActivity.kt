@@ -1,5 +1,6 @@
 package com.example.workouttimer
 
+import com.example.workouttimer.NumberPickerH
 import com.example.workouttimer.Workout
 import android.content.Context
 import android.os.Bundle
@@ -20,13 +21,13 @@ class EditWorkoutActivity : AppCompatActivity() {
 
         // Available fields in the view
         val title: EditText = findViewById(R.id.title)
-        val prepare: EditText = findViewById(R.id.prepare)
-        val work: EditText = findViewById(R.id.work)
-        val rest: EditText = findViewById(R.id.rest)
-        val cycles: EditText = findViewById(R.id.cycles)
-        val sets: EditText = findViewById(R.id.sets)
-        val restBetween: EditText = findViewById(R.id.rest_between)
-        val cooldown: EditText = findViewById(R.id.cooldown)
+        val prepare: NumberPickerH = findViewById(R.id.prepare)
+        val work: NumberPickerH = findViewById(R.id.work)
+        val rest: NumberPickerH = findViewById(R.id.rest)
+        val cycles: NumberPickerH = findViewById(R.id.cycles)
+        val sets: NumberPickerH = findViewById(R.id.sets)
+        val restBetween: NumberPickerH = findViewById(R.id.rest_between)
+        val cooldown: NumberPickerH = findViewById(R.id.cooldown)
         val btnApply: Button = findViewById(R.id.save)
         btnApply.setText("Apply")
 
@@ -41,13 +42,13 @@ class EditWorkoutActivity : AppCompatActivity() {
             val w: Workout = workouts.workouts[pos]
 
             title.setText(w.title)
-            prepare.setText(w.prepare.toString())
-            work.setText(w.work.toString())
-            rest.setText(w.rest.toString())
-            cycles.setText(w.cycles.toString())
-            sets.setText(w.sets.toString())
-            restBetween.setText(w.restBetween.toString())
-            cooldown.setText(w.cooldown.toString())
+            prepare.setValue(w.prepare)
+            work.setValue(w.work)
+            rest.setValue(w.rest)
+            cycles.setValue(w.cycles)
+            sets.setValue(w.sets)
+            restBetween.setValue(w.restBetween)
+            cooldown.setValue(w.cooldown)
         }
 
         // Apply workout
@@ -57,13 +58,13 @@ class EditWorkoutActivity : AppCompatActivity() {
             } else {
                 val workout: Workout = Workout(
                     title = title.text.toString(),
-                    prepare = Integer.parseInt(prepare.text.toString()),
-                    work = Integer.parseInt(work.text.toString()),
-                    rest = Integer.parseInt(rest.text.toString()),
-                    cycles = Integer.parseInt(cycles.text.toString()),
-                    sets = Integer.parseInt(sets.text.toString()),
-                    restBetween = Integer.parseInt(restBetween.text.toString()),
-                    cooldown = Integer.parseInt(cooldown.text.toString())
+                    prepare = prepare.getValue(),
+                    work = work.getValue(),
+                    rest = rest.getValue(),
+                    cycles = cycles.getValue(),
+                    sets = sets.getValue(),
+                    restBetween = restBetween.getValue(),
+                    cooldown = cooldown.getValue(),
                 )
 
                 workouts.update(pos, workout)
