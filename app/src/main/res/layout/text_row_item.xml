@@ -48,6 +48,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:textSize="24sp"
-            android:text="Play" />
+            android:text="Start" />
 
 </RelativeLayout>
