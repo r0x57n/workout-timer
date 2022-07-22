@@ -1,42 +1,53 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    android:gravity="center_vertical"
+    android:padding="5dp"
+    android:layout_marginBottom="5dp">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="title"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/play"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/delete"
-            android:layout_marginRight="20dp"
-            android:text="play"
+            android:layout_height="wrap_content"
+            android:text="Title"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/delete"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:text="del"
+            android:text="X"
             android:textSize="24sp" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/totalLabel"
+            android:layout_below="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:textSize="20sp"
+            android:text="Total:" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/totalTime"
+            android:layout_below="@+id/title"
+            android:layout_toRightOf="@+id/totalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="00:00" />
+
+        <TextView
+            android:id="@+id/play"
+            android:layout_below="@+id/totalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="24sp"
+            android:text="Play" />
+
+</RelativeLayout>

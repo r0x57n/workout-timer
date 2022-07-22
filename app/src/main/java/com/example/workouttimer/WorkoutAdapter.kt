@@ -17,7 +17,7 @@ import android.widget.TextView
  * Specifies how the list works.
  */
 class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainActivity) :
-        RecyclerView.Adapter<WorkoutsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<WorkoutsAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
@@ -25,13 +25,13 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView
-        val position: TextView
+        val totalTime: TextView
         val play: TextView
         val delete: TextView
 
         init {
             title = view.findViewById(R.id.title)
-            position = view.findViewById(R.id.position)
+            totalTime = view.findViewById(R.id.totalTime)
             play = view.findViewById(R.id.play)
             delete = view.findViewById(R.id.delete)
         }
@@ -39,12 +39,11 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
 
     // Sets values to the elements in the XML layout for each entry of the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.position.text = position.toString()
         holder.title.text = workouts.workouts[holder.getAdapterPosition()].title
+        holder.totalTime.text = workouts.workouts[holder.getAdapterPosition()].totalTime.toString()
 
         holder.title.setOnClickListener {
             parent.editWorkout(holder.getAdapterPosition())
-            notifyItemChanged(holder.getAdapterPosition())
         }
 
         holder.play.setOnClickListener {
@@ -52,8 +51,7 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
         }
 
         holder.delete.setOnClickListener {
-            workouts.remove(holder.getAdapterPosition())
-            notifyItemRemoved(holder.getAdapterPosition())
+            parent.remove(holder.getAdapterPosition())
         }
 
     }
@@ -73,5 +71,4 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = workouts.workouts.size
-
 }

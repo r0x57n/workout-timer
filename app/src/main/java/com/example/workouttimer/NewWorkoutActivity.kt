@@ -37,7 +37,7 @@ class NewWorkoutActivity : AppCompatActivity() {
             if (title.text.isBlank()) {
                 title.setError("Can't be empty.")
             } else {
-                val workout: Workout = Workout(
+                var w: Workout = Workout(
                     title = title.text.toString(),
                     prepare = prepare.getValue(),
                     work = work.getValue(),
@@ -46,9 +46,12 @@ class NewWorkoutActivity : AppCompatActivity() {
                     sets = sets.getValue(),
                     restBetween = restBetween.getValue(),
                     cooldown = cooldown.getValue(),
+                    totalTime = 0,
                 )
 
-                workouts.new(workout)
+                w.totalTime = w.prepare + w.cooldown + (w.work + w.rest) * w.cycles * w.sets + w.sets * w.restBetween
+
+                workouts.new(w)
                 setResult(RESULT_OK)
                 finish() // finishes the intent
             }

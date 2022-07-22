@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 
 import android.widget.TextView
+import android.app.AlertDialog
 
 /*
  * Shows a clickable list of workouts, and a button to add new ones.
@@ -102,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, EditWorkoutActivity::class.java)
         intent.putExtra("pos", pos)
         resultLauncher.launch(intent)
+        adapter.notifyItemChanged(pos)
     }
 
     fun playWorkout(pos: Int) {
@@ -117,5 +119,21 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, NewWorkoutActivity::class.java)
         resultLauncher.launch(intent)
+    }
+
+    fun remove(pos: Int) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Remove workout?")
+        builder.setMessage("Are you sure you want to delete workout \"" + workouts.workouts[pos].title + "\"")
+        builder.setPositiveButton(android.R.string.yes) {
+            dialog,
+            which -> run {
+                workouts.remove(pos)
+                adapter.notifyItemRemoved(pos)
+            }
+        }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which -> run { } }
+        builder.show()
     }
 }

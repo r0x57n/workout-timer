@@ -56,7 +56,7 @@ class EditWorkoutActivity : AppCompatActivity() {
             if (title.text.isBlank()) {
                 title.setError("Can't be empty.")
             } else {
-                val workout: Workout = Workout(
+                val w: Workout = Workout(
                     title = title.text.toString(),
                     prepare = prepare.getValue(),
                     work = work.getValue(),
@@ -65,9 +65,12 @@ class EditWorkoutActivity : AppCompatActivity() {
                     sets = sets.getValue(),
                     restBetween = restBetween.getValue(),
                     cooldown = cooldown.getValue(),
+                    totalTime = 0,
                 )
 
-                workouts.update(pos, workout)
+                w.totalTime = w.prepare + w.cooldown + (w.work + w.rest) * w.cycles * w.sets + w.sets * w.restBetween
+
+                workouts.update(pos, w)
                 setResult(RESULT_OK)
                 finish()
             }

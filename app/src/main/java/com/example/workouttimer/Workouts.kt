@@ -10,14 +10,15 @@ import android.util.Log
 
 @Serializable
 data class Workout(
-    val title: String,
-    val prepare: Int,
-    val work: Int,
-    val rest: Int,
-    val cycles: Int,
-    val sets: Int,
-    val restBetween: Int,
-    val cooldown: Int,
+    var title: String,
+    var prepare: Int,
+    var work: Int,
+    var rest: Int,
+    var cycles: Int,
+    var sets: Int,
+    var restBetween: Int,
+    var cooldown: Int,
+    var totalTime: Int,
 )
 
 // Data structure to reach workouts from the savefile for workouts on the phone
