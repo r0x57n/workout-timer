@@ -77,4 +77,8 @@ class Workouts(val context: Context) {
 
         writeWorkoutsToFile()
     }
+
+    fun get(pos: Int): Workout {
+        return workouts[pos]
+    }
 }

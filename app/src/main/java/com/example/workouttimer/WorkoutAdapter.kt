@@ -39,8 +39,12 @@ class WorkoutsAdapter(private val workouts: Workouts, private val parent: MainAc
 
     // Sets values to the elements in the XML layout for each entry of the list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = workouts.workouts[holder.getAdapterPosition()].title
-        holder.totalTime.text = workouts.workouts[holder.getAdapterPosition()].totalTime.toString()
+        val w: Workout = workouts.get(holder.getAdapterPosition())
+        holder.title.text = w.title
+
+        var totalTimeMinutes: Int = w.totalTime / 60
+        var totalTimeSeconds: Int = w.totalTime - (totalTimeMinutes * 60)
+        holder.totalTime.text = totalTimeMinutes.toString() + ":" + totalTimeSeconds.toString()
 
         holder.title.setOnClickListener {
             parent.editWorkout(holder.getAdapterPosition())
